@@ -14,7 +14,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$GIT_COMMIT"
+          dockerImage = docker.build registry + ":$GIT_BRANCH"
         }
       }
     }
@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$GIT_COMMIT"
+        sh "docker rmi $registry:$GIT_BRANCH"
       }
     }
   }
